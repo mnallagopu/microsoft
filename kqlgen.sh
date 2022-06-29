@@ -42,7 +42,7 @@ fi
 seq 1 | xargs -Iz echo "--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--"
 echo -e "\n\nSTEP:3) PLEASE ENTER THE RESOURCE URI"
 echo "************"
-read -p "RESOURCE URI : "  RESOURCEURI
+read -p "$(echo -e $BOLD$YELLOW"RESOURCE URI : "$RESET)" RESOURCEURI
 echo "************"
 seq 1 | xargs -Iz echo "--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--"
 if [[ "$RESOURCETYPE" = "a" ]]
