@@ -1,10 +1,14 @@
 
 # vars
+RESET="\033[0m"
+BOLD="\033[1m"
+YELLOW="\033[38;5;11m"
 SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 SCRIPT_NAME="$(echo $0 | sed 's|\.\/||g')"
 CDATE=$(date +"%Y-%m-%d")
 C3DATE=$(date -d -3days +"%Y-%m-%d")
 CTIME=$(date -u +"%H:%M")
+
 
 seq 2 | xargs -Iz echo "--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--"
 echo "*************GENERATE KUSTO QUERIES*************"
@@ -12,13 +16,13 @@ seq 2 | xargs -Iz echo "--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--
 echo -e "\n\nSTEP:1) PLEASE SELECT THE VALUE OF THE RESOURCE TYPE"
 echo -e "\na) AKS \nb) ACR \nc) ACI \nd) ARO"
 echo "************"
-read -p "Type of resource : " RESOURCETYPE
+read -p "$(echo -e $BOLD$YELLOW"Type of resource : "$RESET)" RESOURCETYPE
 echo "************"
 seq 1 | xargs -Iz echo "--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--/--"
 echo -e "\n\nSTEP:2) PLEASE SELECT THE TIMELINETYPE TYPE"
 echo -e "\na) Days Ago (default is 3 days) \nb) Time_between (default is ${CDATE}T${CTIME}Z - ${C3DATE}T${CTIME}Z) \nc) Manual Entry"
 echo "************"
-read -p "Type of Timeline : "  TIMELINETYPE
+read -p "$(echo -e $BOLD$YELLOW"Type of Timeline : "$RESET)" TIMELINETYPE
 echo "************"
 if [[ "$TIMELINETYPE" = "b" ]]
 then
@@ -29,7 +33,7 @@ then
 echo -e "\nPlease enter the time value in either of the below mentioned syntax formats"
 echo -e "\n'>= ago(9d)' OR  'between (datetime(2022-06-16)..datetime(2022-06-17))'\n"
 echo "************"
-read -p "ENTER TIME VALUE: "  TIMEVALUE
+read -p "$(echo -e $BOLD$YELLOW"ENTER TIME VALUE: "$RESET)" TIMEVALUE
 echo "************"
 else 
 		echo "3 days Ago" 
